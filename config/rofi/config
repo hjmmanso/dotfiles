@@ -1,0 +1,6 @@
+rofi.modi: window,drun,run
+rofi.separator-style: none
+rofi.theme: sidetab.rasi
+rofi.font: inconsolata 12
+rofi.show-icons : true
+rofi.drun-icon-theme = Flat-Remix-Dark

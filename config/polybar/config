@@ -1,0 +1,204 @@
+[colors]
+background = #1d1f21
+foreground = #eee
+linecolor = #d8442e
+bordercolor = #333
+accent = #2d2d2d
+accent2 = #d8442e
+
+[settings]
+screenchange-reload = true
+;throttle-output-for = 10
+;throttle-output = 5
+;throttle-input-for = 40
+
+;compositing-background = over
+;compositing-background = screen
+;compositing-foreground = xor
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+[bar/top]
+enable-ipc = true
+width = 100%
+height = 24
+;radius = 100.0
+fixed-center = true
+;override-redirect = true
+
+background = #cc1d1f21
+;${colors.background}
+foreground = ${colors.foreground}
+
+
+line-color = ${colors.linecolor}
+underline-size = 2
+overline-size = 2
+
+#border-bottom-size = 2
+#border-bottom-color = ${colors.bordercolor}
+
+padding-left = 0
+padding-right = 2
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = siji:pixelsize=9;1
+font-1 = inconsolata:pixelsize=10;1
+font-2 = unifont:size=10;1
+font-3 = dina:pixelsize=10;1
+font-4 = "FontAwesome:pixelsize=10;1"
+
+modules-left = i3 xwindow 
+modules-center = date weathericons
+modules-right = music xkeyboard volume vpncheck battery powermenu
+
+tray-position = right
+tray-padding = 2
+;tray-maxsize = 16
+;tray-background = #cc1d1f21
+;tray-transparent = true
+;tray-detached = true
+;tray-offset-y = -1
+
+;dim-value = 0.8
+wm-restack = i3
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+# bar/module specific vars
+i3-focused-overline = ${colors.linecolor}
+i3-focused-underline = #cc333333
+
+[module/i3]
+type = internal/i3
+index-sort = true
+pin-workspaces = true
+wrapping-scroll = true
+
+format = <label-state> <label-mode>
+
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-background = ${colors.accent}
+
+label-focused = %index%
+label-focused-background = #cc383838
+label-focused-foreground =  #fff
+label-focused-overline = ${root.i3-focused-overline}
+label-focused-underline = ${root.i3-focused-underline}
+label-focused-padding = 2
+
+label-unfocused = %index%
+label-unfocused-padding = 2
+
+label-urgent = %index%!
+label-urgent-background =  #ccbd2c40
+label-urgent-padding = 2
+
+label-visible = %index%
+label-visible-padding = 2
+
+[module/date]
+type = internal/date
+label = %{F#666}%{F-} %date% %{F#e60053}%{F-} %time%
+date = %d-%m-%Y
+time = %H:%M
+interval = 5
+
+[module/volume]
+type = internal/volume
+
+format-volume = <label-volume>
+label-volume = %percentage%%
+label-volume-foreground = ${root.foreground}
+
+format-muted-foreground = #777
+label-muted = sound muted
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open = ⏻
+label-open-overline = ${colors.background}
+label-close =  close
+label-separator = |
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = reboot
+
+menu-2-0 = power off
+menu-2-0-exec = shutdown -h now  
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+[module/xkeyboard]
+type = internal/xkeyboard
+
+format-prefix = " "
+format-prefix-foreground = #666
+
+label-layout = %layout%
+
+label-indicator-padding = 2
+label-indicator-background = ${colors.accent}
+
+[module/xwindow]
+type = internal/xwindow
+format = <label>
+label-maxlen = 75
+
+[module/counter]
+type = internal/counter
+format = <counter>
+interval = 0.1
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC0
+full-at = 97
+
+format-charging = <label-charging>
+format-charging-underline = #c5c5c5
+format-discharging = <label-discharging>
+format-discharging-underline = #198844
+format-full-underline = #d8442e
+
+[module/vpncheck]
+type = custom/script
+exec = pgrep openvpn
+interval = 5
+label = ⥮ VPN    
+label-background = ${colors.accent}
+
+[module/weathericons]
+type = custom/script
+interval = 10
+format = <label>
+exec = ~/.config/polybar/weather
+
+[module/music]
+type = custom/script
+interval = 1
+
+label = %output:0:45:...%
+exec = ~/.config/polybar/playerctl.sh
+
+; vim:ft=dosini
