@@ -1,0 +1,7 @@
+#!/bin/bash
+echo "-------- zypper --------"
+sudo zypper dup;
+echo "-------- SNAP --------"
+sudo snap refresh; 
+echo "-------- FLATPAK --------"
+sudo flatpak update;

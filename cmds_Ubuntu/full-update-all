@@ -1,7 +1,0 @@
-#!/bin/bash
-
-echo "-------- APT --------"
-sudo apt update && sudo apt full-upgrade;
-echo "-------- SNAP --------"
-sudo snap refresh; 
-echo "-------- FLATPAK --------" && sudo flatpak update

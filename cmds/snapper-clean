@@ -1,0 +1,7 @@
+#!/bin/bash
+echo "-------- snapper number --------"
+sudo snapper cleanup number;
+echo "-------- snapper timeline --------"
+sudo snapper cleanup timeline; 
+echo "-------- snapper empty --------"
+sudo snapper cleanup empty-pre-post
