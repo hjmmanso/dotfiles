@@ -1,0 +1,26 @@
+# $HOME/.lircrc
+#S51 Volume Knob
+begin
+ prog = irexec
+ remote = RM-1500
+ button = vol-
+ repeat = 1
+ config = amixer -D pulse sset Master 5%- 
+end
+
+#begin
+ #prog = irexec
+ #remote = RM-1500
+ #button = mute
+ #repeat = 1
+ #config = if [ `amixer -D pulse sget Master|grep "Front Left:"|awk '{print $6}'|tr -d '[]%'` = "on" ]; then alsactl store -f ~/.asound.state; amixer -D pulse sset Master mute; amixer -c S51 sset 'Power LED' off; else alsactl restore -f ~/.asound.state; amixer -D pulse sset Master unmute; amixer -c S51 sset 'Power LED' on;  fi 
+ #config = if [ `amixer -D pulse sget Master|grep "Front Left:"|awk '{print $5}'|tr -d '[]%'` -gt 0 ]; then alsactl store -f ~/.asound.state; amixer -D pulse sset Master 0; amixer -c S51 sset 'Power LED' off; else alsactl restore -f ~/.asound.state; amixer -c S51 sset 'Power LED' on;  fi 
+#end
+
+begin
+ prog = irexec
+ remote = RM-1500
+ button = vol+
+ repeat = 1
+ config = amixer -D pulse sset Master 5%+ 
+end
